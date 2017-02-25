@@ -7,6 +7,9 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.util.Log;
 
+import java.util.Collection;
+import java.util.List;
+
 /**
  * Created by Max on 20/02/2017.
  */
@@ -22,7 +25,7 @@ public class Bille {
 
     private Rect hitbox; //servira pour les collision
 
-    private final float velocityLimit = 20; //vitesse limite
+    private final float velocityLimit = 40; //vitesse limite
 
 
     public Bille(int spawnX,int spawnY){
@@ -40,25 +43,26 @@ public class Bille {
         return y;
     }
 
-    public void update(float time,Block block){ //appliquera le mouvemement selon la vitesse, et les collisions, devra prendre une liste de block
+    public void update(float time, List<Block> blockList){ //appliquera le mouvemement selon la vitesse, et les collisions, devra prendre une liste de block
 
         float xS = 0;
         float yS = 0;
-
-        if(block.collide(hitbox)){ //a faire: parcours de chaque block, pour tester la collisions
-           if(x+size >= block.getLeft() && xVelo <0 ){ //gauche du bloc
-               xVelo = 0;
-            }else if(x <= block.getRight() && xVelo > 0 ){ //droite du bloc
-                   xVelo = 0;
-            }
-            if(y <= block.getTop() && yVelo < 0){ //haut du bloc
-                yVelo =  0;
-            }else if(y-size >= block.getBottom() && yVelo > 0) { //bas du bloc
-                yVelo =  0;
+        for(Block block : blockList) {
+            if (block.collide(hitbox)) {
+                if (x + size >= block.getLeft() && xVelo < 0) { //gauche du bloc
+                    xVelo = 0;
+                } else if (x <= block.getRight() && xVelo > 0) { //droite du bloc
+                    xVelo = 0;
+                }
+                if (y <= block.getTop() && yVelo < 0) { //haut du bloc
+                    yVelo = 0;
+                } else if (y - size >= block.getBottom() && yVelo > 0) { //bas du bloc
+                    yVelo = 0;
+                }
             }
         }
-            xS = (xVelo/2)*time;
-            yS = (yVelo/2)*time;
+        xS = (xVelo/2)*time;
+        yS = (yVelo/2)*time;
 
         x -= xS;
         y -= yS;
@@ -87,8 +91,10 @@ public class Bille {
 
         if(xVelo > velocityLimit) //test des limite
             xVelo = velocityLimit;
+        if(xVelo < (-velocityLimit)) xVelo=-velocityLimit;
         if(yVelo > velocityLimit )
             yVelo = velocityLimit;
+        if(yVelo < (-velocityLimit)) yVelo=-velocityLimit;
     }
 
 

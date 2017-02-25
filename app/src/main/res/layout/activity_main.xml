@@ -19,4 +19,23 @@
         android:id="@+id/playButton"
         style="@style/Widget.AppCompat.Button"
         android:elevation="0dp" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toStartOf="@+id/playButton"
+        android:layout_marginEnd="29dp"
+        android:layout_marginTop="39dp"
+        android:id="@+id/screenheigt" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/screenheigt"
+        android:layout_toEndOf="@+id/screenheigt"
+        android:layout_marginStart="65dp"
+        android:id="@+id/screenwitdh" />
 </RelativeLayout>

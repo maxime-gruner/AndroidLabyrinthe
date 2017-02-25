@@ -10,6 +10,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 
@@ -18,7 +19,7 @@ public class Main2Activity extends AppCompatActivity{
     private SensorManager sm;
 
     private GameView gameView; //la vue du jeu
-    private Game game; //le jeu
+    private Level level; //le jeu
 
 
     @Override
@@ -32,12 +33,15 @@ public class Main2Activity extends AppCompatActivity{
 
         gameView = new GameView(this);
         layout.addView(gameView);
-        game = new Game(900,900);
+        Log.d("test", "fail");
+        level = new Level1().createLvl1();
+        Log.d("test", "fail");
 
         new Thread(new Runnable() {
             @Override
             public void run() {
-                game.doRun(gameView);
+                level.doRun(gameView);
+                Log.d("test", "fail");
 
             }
         }).start();
@@ -68,7 +72,7 @@ public class Main2Activity extends AppCompatActivity{
             p.setStyle(Paint.Style.STROKE);
             p.setColor(Color.RED);
 
-            game.draw(canvas,p);
+            level.draw(canvas,p);
 
         }
 
@@ -76,7 +80,7 @@ public class Main2Activity extends AppCompatActivity{
 
         @Override
         public void onSensorChanged(SensorEvent event) {
-            game.changeAccel(event.values); //change la valeur de l acceleration
+            level.changeAccel(event.values); //change la valeur de l acceleration
         }
 
         @Override

@@ -14,16 +14,19 @@ public class Block {
     private int x;
     private int y;
 
-    private int height = 70;
-    private int width = 150;
+    private int height;
+    private int width;
 
     private Rect hitbox ;
 
-    public Block(int x,int y){
+    public Block(int x,int y, int width, int height){
         this.x = x;
         this.y = y;
+        this.width = width;
+        this.height = height;
 
         hitbox = new Rect(x,y,x+width,y+height);
+        Log.d("test", "fail");
     }
 
     public void draw(Canvas canvas, Paint p){
