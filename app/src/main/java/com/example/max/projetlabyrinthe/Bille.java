@@ -43,7 +43,7 @@ public class Bille {
         return y;
     }
 
-    public void update(float time, List<Block> blockList){ //appliquera le mouvemement selon la vitesse, et les collisions, devra prendre une liste de block
+    public void update(float time, List<Block> blockList,int  screenWidth, int screenHeight){ //appliquera le mouvemement selon la vitesse, et les collisions, devra prendre une liste de block
 
         float xS = 0;
         float yS = 0;
@@ -68,15 +68,15 @@ public class Bille {
         y -= yS;
         hitbox.offsetTo( (int)x, (int)y ); //deplace la hitbox
 
-        if (x > 800) { //limite du jeu (jusrte pour tester)
-            x = 800;
+        if (x > screenWidth) { //limite du jeu (jusrte pour tester)
+            x = screenWidth;
             xVelo = 0;
         } else if (x < 0) {
             xVelo = 0;
             x = 0;
         }
-        if (y > 800) { //limite du jeu (jusrte pour tester)
-            y = 800;
+        if (y > screenHeight) { //limite du jeu (jusrte pour tester)
+            y = screenHeight;
             yVelo = 0;
         } else if (y < 0) {
             yVelo = 0;

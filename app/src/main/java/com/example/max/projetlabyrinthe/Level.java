@@ -52,7 +52,7 @@ public class Level {
     public void doRun(Main2Activity.GameView canvas) {
 
         while(true) {
-            bille.update(time,wallList); //applique les mouvement
+            bille.update(time,wallList,width,height); //applique les mouvement
 
 
             canvas.postInvalidate();

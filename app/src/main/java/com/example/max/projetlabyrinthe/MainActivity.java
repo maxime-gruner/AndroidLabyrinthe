@@ -30,7 +30,10 @@ public class MainActivity extends AppCompatActivity {
         width.setText(Integer.toString(size.x));
         heigt.setText(Integer.toString(size.y));
 
+
         intent = new Intent(this,Main2Activity.class);
+        intent.putExtra("WIDTH", size.x);
+        intent.putExtra("HEIGHT", (size.y));
         playButton = (Button) findViewById(R.id.playButton);
 
         playButton.setOnClickListener(new View.OnClickListener() {

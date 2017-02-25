@@ -14,7 +14,7 @@ import java.util.List;
 
 public class Level1 {
 
-    public Level createLvl1 (){
+    public Level createLvl1 (int screenWitdh, int screenHeigth){
         List<Block> blockList = new ArrayList<>();
         Log.d("test", "fail");
         blockList.add(new Block(1,200,700,10));
@@ -34,7 +34,7 @@ public class Level1 {
 
         Block start = new Block(700,0,10,10);
 
-        Level level = new Level(800,800,arrival,start,blockList);
+        Level level = new Level(screenWitdh,screenHeigth,arrival,start,blockList);
         return  level;
     }
 
