@@ -23,6 +23,7 @@ public class Main2Activity extends AppCompatActivity{
 
     private GameView gameView; //la vue du jeu
     private Level level; //le jeu
+    private Game game;
 
 
     @Override
@@ -39,8 +40,7 @@ public class Main2Activity extends AppCompatActivity{
                         | View.SYSTEM_UI_FLAG_IMMERSIVE);
         setContentView(R.layout.activity_main2);
 
-        Intent intent= new Intent();
-        intent = getIntent();
+        Intent intent=  getIntent();
         int screenWidth=intent.getIntExtra("WIDTH",0);
         int screenHeight=intent.getIntExtra("HEIGHT",0);
         RelativeLayout layout = (RelativeLayout) findViewById(R.id.activity_main2);
@@ -50,14 +50,17 @@ public class Main2Activity extends AppCompatActivity{
         gameView = new GameView(this);
         layout.addView(gameView);
         Log.d("test", "fail");
+        game = new Game();
         level = new Level1().createLvl1(screenWidth, screenHeight);
+        Level level2 = new Level1().createLvl2(screenWidth, screenHeight);
+        game.addLevel(level);
+        game.addLevel(level2);
         Log.d("test", "fail");
 
         new Thread(new Runnable() {
             @Override
             public void run() {
-                level.doRun(gameView);
-                Log.d("test", "fail");
+                game.doRun(gameView);
 
             }
         }).start();

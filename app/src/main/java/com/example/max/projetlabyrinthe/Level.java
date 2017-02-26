@@ -16,6 +16,7 @@ public class Level {
     Block arrival,start;
     List<Block> wallList;
 
+    private boolean terminated = false;
     int height;
     int width;
 
@@ -47,20 +48,23 @@ public class Level {
             bille.draw(canvas, p);
             block.draw(canvas, p); // a changer: parcourir la liste de block pour les afficher
         }
+        arrival.drawArrival(canvas,p);
     }
 
-    public void doRun(Main2Activity.GameView canvas) {
+    public void doRun(Main2Activity.GameView gameView) {
 
-        while(true) {
-            bille.update(time,wallList,width,height); //applique les mouvement
+        while(!terminated) {
+            terminated = bille.update(time,wallList,arrival,width,height); //applique les mouvement
 
 
-            canvas.postInvalidate();
+            gameView.postInvalidate();
             try {
                 Thread.sleep(10);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
+
+
     }
 }

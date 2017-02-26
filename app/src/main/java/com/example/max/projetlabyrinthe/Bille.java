@@ -25,7 +25,7 @@ public class Bille {
 
     private Rect hitbox; //servira pour les collision
 
-    private final float velocityLimit = 40; //vitesse limite
+    private final float velocityLimit = 20; //vitesse limite
 
 
     public Bille(int spawnX,int spawnY){
@@ -43,10 +43,13 @@ public class Bille {
         return y;
     }
 
-    public void update(float time, List<Block> blockList,int  screenWidth, int screenHeight){ //appliquera le mouvemement selon la vitesse, et les collisions, devra prendre une liste de block
+    public boolean update(float time, List<Block> blockList, Block arrival, int  screenWidth, int screenHeight){ //appliquera le mouvemement selon la vitesse, et les collisions, devra prendre une liste de block
 
         float xS = 0;
         float yS = 0;
+        if(arrival.collide(hitbox)){
+            return true;
+        }
         for(Block block : blockList) {
             if (block.collide(hitbox)) {
                 if (x + size >= block.getLeft() && xVelo < 0) { //gauche du bloc
@@ -61,6 +64,7 @@ public class Bille {
                 }
             }
         }
+
         xS = (xVelo/2)*time;
         yS = (yVelo/2)*time;
 
@@ -82,7 +86,7 @@ public class Bille {
             yVelo = 0;
             y = 0;
         }
-
+        return false;
     }
 
     public void changeVelocity(float[] values, float time){ //change les valeur x velo par rapport a l accelrometre

@@ -35,6 +35,12 @@ public class Block {
         p.setStyle(Paint.Style.STROKE);
     }
 
+    public void drawArrival(Canvas canvas, Paint p){
+        p.setStyle(Paint.Style.FILL);
+        canvas.drawRect(hitbox,p);
+        p.setStyle(Paint.Style.STROKE);
+    }
+
     public boolean collide(Rect r){
         Rect tmp = new Rect(hitbox);
         return  tmp.intersect(r);
