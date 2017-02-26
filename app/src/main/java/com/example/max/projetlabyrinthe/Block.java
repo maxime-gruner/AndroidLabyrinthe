@@ -11,13 +11,13 @@ import android.util.Log;
  */
 
 public class Block {
-    private int x;
-    private int y;
+    protected int x;
+    protected int y;
 
-    private int height;
-    private int width;
+    protected int height;
+    protected int width;
 
-    private Rect hitbox ;
+    protected Rect hitbox ;
 
     public Block(int x,int y, int width, int height){
         this.x = x;
@@ -26,18 +26,11 @@ public class Block {
         this.height = height;
 
         hitbox = new Rect(x,y,x+width,y+height);
-        Log.d("test", "fail");
     }
 
-    public void draw(Canvas canvas, Paint p){
+    public void draw(Canvas canvas, Paint p) {
         p.setStyle(Paint.Style.FILL);
-        canvas.drawRect(hitbox,p);
-        p.setStyle(Paint.Style.STROKE);
-    }
-
-    public void drawArrival(Canvas canvas, Paint p){
-        p.setStyle(Paint.Style.FILL);
-        canvas.drawRect(hitbox,p);
+        canvas.drawRect(hitbox, p);
         p.setStyle(Paint.Style.STROKE);
     }
 

@@ -12,28 +12,32 @@ import java.util.List;
  * Created by mauff on 25/02/2017.
  */
 
-public class Level1 {
+public class CreateLevel {
 
-    private int small = 10, medium = 50, big = 100;
+    private static int small = 10, medium = 50, big = 100;
 
 
-    public Level createLvl1 (int screenWidth, int screenHeight){
+    public static Level loadLevel(int screenWidth, int screnHeight ,int i){
+        if(i == 1){
+            return createLvl1(screenWidth,screnHeight);
+        }else if(i == 2){
+            return createLvl2(screenWidth,screnHeight);
+        }else{
+            Log.d("TEST", "loadLevel: ERROR");
+            return null;
+        }
+    }
+
+    private static Level createLvl1 (int screenWidth, int screenHeight){
         List<Block> blockList = new ArrayList<>();
-        Log.d("test", "fail");
         blockList.add(new Block(1,200,700,small));
-        Log.d("test", "fail");
         blockList.add(new Block(700,200,small,500));
-        Log.d("test", "fail");
         blockList.add(new Block(600,200,small,400));
-        Log.d("test", "fail");
         blockList.add(new Block(400,600,200,small));
-        Log.d("test", "fail");
         blockList.add(new Block(100,200,small,400));
-        Log.d("test", "fail");
         blockList.add(new Block(100,600,200,small));
-        Log.d("test", "fail");
 
-        Block arrival = new Block(340,440,small,small);
+        ArrivalBlock arrival = new ArrivalBlock(340,440,small,small);
 
         Block start = new Block(700,0,small,small);
 
@@ -41,21 +45,15 @@ public class Level1 {
         return  level;
     }
 
-    public Level createLvl2 (int screenWidth, int screenHeight){
+    private static Level createLvl2 (int screenWidth, int screenHeight){
         List<Block> blockList = new ArrayList<>();
-        Log.d("test", "fail");
         blockList.add(new Block(1,200,700,small));
-        Log.d("test", "fail");
         blockList.add(new Block(700,200,small,500));
-        Log.d("test", "fail");
         blockList.add(new Block(300,600,200,small));
-        Log.d("test", "fail");
         blockList.add(new Block(100,200,small,400));
-        Log.d("test", "fail");
         blockList.add(new Block(100,600,200,small));
-        Log.d("test", "fail");
 
-        Block arrival = new Block(340,440,small,small);
+        ArrivalBlock arrival = new ArrivalBlock(340,440,small,small);
 
         Block start = new Block(700,0,small,small);
 

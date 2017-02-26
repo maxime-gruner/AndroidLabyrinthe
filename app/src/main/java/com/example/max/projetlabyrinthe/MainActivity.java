@@ -5,16 +5,16 @@ import android.graphics.Point;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Display;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button playButton;
-    private Intent intent;
+    private Button startLvl1;
+    private Button startLvl2;
 
+    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,13 +32,24 @@ public class MainActivity extends AppCompatActivity {
 
 
         intent = new Intent(this,Main2Activity.class);
+
         intent.putExtra("WIDTH", size.x);
         intent.putExtra("HEIGHT", (size.y));
-        playButton = (Button) findViewById(R.id.playButton);
+        startLvl1 = (Button) findViewById(R.id.level1);
+        startLvl2 = (Button) findViewById(R.id.level2);
 
-        playButton.setOnClickListener(new View.OnClickListener() {
+        startLvl1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                intent.putExtra("LEVEL",1);
+                startActivity(intent);
+            }
+        });
+
+        startLvl2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent.putExtra("LEVEL",2);
                 startActivity(intent);
             }
         });

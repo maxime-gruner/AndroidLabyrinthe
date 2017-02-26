@@ -11,10 +11,8 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
-import android.view.WindowManager;
 import android.widget.RelativeLayout;
 
 public class Main2Activity extends AppCompatActivity{
@@ -41,6 +39,7 @@ public class Main2Activity extends AppCompatActivity{
         setContentView(R.layout.activity_main2);
 
         Intent intent=  getIntent();
+        int levelNum = intent.getIntExtra("LEVEL",1);
         int screenWidth=intent.getIntExtra("WIDTH",0);
         int screenHeight=intent.getIntExtra("HEIGHT",0);
         RelativeLayout layout = (RelativeLayout) findViewById(R.id.activity_main2);
@@ -49,19 +48,15 @@ public class Main2Activity extends AppCompatActivity{
 
         gameView = new GameView(this);
         layout.addView(gameView);
-        Log.d("test", "fail");
         game = new Game();
-        level = new Level1().createLvl1(screenWidth, screenHeight);
-        Level level2 = new Level1().createLvl2(screenWidth, screenHeight);
-        game.addLevel(level);
-        game.addLevel(level2);
-        Log.d("test", "fail");
+
+        level = CreateLevel.loadLevel(screenWidth,screenHeight,levelNum);
 
         new Thread(new Runnable() {
             @Override
             public void run() {
-                game.doRun(gameView);
-
+                game.doRun(gameView,level);
+                finish();
             }
         }).start();
 

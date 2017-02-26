@@ -25,8 +25,9 @@ public class Bille {
 
     private Rect hitbox; //servira pour les collision
 
-    private final float velocityLimit = 20; //vitesse limite
+    private final float velocityLimit = 35; //vitesse limite
 
+    static String TAG ="TEST";
 
     public Bille(int spawnX,int spawnY){
 
@@ -52,14 +53,18 @@ public class Bille {
         }
         for(Block block : blockList) {
             if (block.collide(hitbox)) {
-                if (x + size >= block.getLeft() && xVelo < 0) { //gauche du bloc
+                if (x + size > block.getLeft() && xVelo < 0) { //gauche du bloc
+                    Log.d(TAG, "update: GAUCHE");
                     xVelo = 0;
-                } else if (x <= block.getRight() && xVelo > 0) { //droite du bloc
+                } else if (x < block.getRight() && xVelo > 0) { //droite du bloc
+                    Log.d(TAG, "update: DROITE");
                     xVelo = 0;
                 }
-                if (y <= block.getTop() && yVelo < 0) { //haut du bloc
+                if (y < block.getTop() && yVelo < 0) { //haut du bloc
+                    Log.d(TAG, "update: HAUT");
                     yVelo = 0;
-                } else if (y - size >= block.getBottom() && yVelo > 0) { //bas du bloc
+                } else if (y - size > block.getBottom() && yVelo > 0) { //bas du bloc
+                    Log.d(TAG, "update: BAS");
                     yVelo = 0;
                 }
             }

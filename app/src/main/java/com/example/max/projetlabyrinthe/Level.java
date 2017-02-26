@@ -46,9 +46,9 @@ public class Level {
     public void draw(Canvas canvas, Paint p){
         for(Block block : wallList) {
             bille.draw(canvas, p);
-            block.draw(canvas, p); // a changer: parcourir la liste de block pour les afficher
+            block.draw(canvas, p);
         }
-        arrival.drawArrival(canvas,p);
+        arrival.draw(canvas,p);
     }
 
     public void doRun(Main2Activity.GameView gameView) {

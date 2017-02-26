@@ -12,32 +12,14 @@ import java.util.TreeMap;
 
 public class Game {
     private Integer number;
-    private static  final TreeMap<Integer , Level> levels= new TreeMap<>();
 
     public Game (){
         number=0;
     }
 
-    public void addLevel (Level lvl){
-        levels.put(number, lvl);
-        number++;
-    }
 
-    public boolean hasLevel (Integer i){
-        return levels.containsKey(i);
-    }
-
-    public Level loadLevel (Integer key){
-        if(levels.containsKey(key)) Log.d("trouvé !", " trouvé ");
-        return levels.get(key);
-    }
-
-    public void doRun(Main2Activity.GameView canvas){
-        int current = 0;
-        while(levels.containsKey(current)){
-            levels.get(current).doRun(canvas);
-            current++;
-        }
+    public void doRun(Main2Activity.GameView canvas,Level level){
+        level.doRun(canvas);
     }
 
 
