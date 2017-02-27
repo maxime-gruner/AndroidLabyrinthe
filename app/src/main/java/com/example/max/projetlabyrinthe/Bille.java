@@ -18,8 +18,10 @@ public class Bille {
     private float x; //position
     private float y;
 
+    private boolean alive = true;
+
     private int size = 50; ///Taille de la bille
-    private int mass = 50;
+    private int mass = 5;
 
     private float xVelo = 0; //vitesse actuelle de chaque axe
     private float yVelo = 0;
@@ -53,7 +55,7 @@ public class Bille {
         this.y = y;
     }
 
-    public synchronized boolean update(float time, List<Block> blockList, Block arrival, int  screenWidth, int screenHeight){ //appliquera le mouvemement selon la vitesse, et les collisions, devra prendre une liste de block
+    public synchronized boolean update(float time, List<Block> blockList, int  screenWidth, int screenHeight){ //appliquera le mouvemement selon la vitesse, et les collisions, devra prendre une liste de block
 
         float xS = 0;
         float yS = 0;
@@ -63,14 +65,11 @@ public class Bille {
                 if (block.actionOnCollide(this)){
                     return true;
                 }
-            }else{
-                xS = (xVelo/2)*time;
-                yS = (yVelo/2)*time;
             }
-
         }
 
-
+        xS = (xVelo/2)*time;
+        yS = (yVelo/2)*time;
 
         x -= xS;
         y -= yS;
@@ -93,7 +92,7 @@ public class Bille {
         return false;
     }
 
-    public synchronized void changeVelocity(float[] values, float time){ 
+    public synchronized void changeVelocity(float[] values, float time){
         xVelo += (1*(values[0]*mass)*time) /2;
         yVelo += (-1*(values[1]*mass)*time)/2;
 
@@ -162,5 +161,13 @@ public class Bille {
         int rX = (int)x+size-5;
         int rY = (int)y+10;
         return new Rect(rX,rY,rX+5,rY+size-20) ;
+    }
+
+    public boolean isAlive() {
+        return alive;
+    }
+
+    public void setAlive(boolean alive) {
+        this.alive = alive;
     }
 }

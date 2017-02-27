@@ -53,7 +53,8 @@ public class CreateLevel {
         blockList.add(new Block(100,200,small,400));
         blockList.add(new Block(100,600,200,small));
 
-        ArrivalBlock arrival = new ArrivalBlock(340,440,small,small);
+        blockList.add(new Trap(900,900,100,100));
+        blockList.add(new ArrivalBlock(340,440,small,small));
 
         Block start = new Block(700,0,small,small);
 

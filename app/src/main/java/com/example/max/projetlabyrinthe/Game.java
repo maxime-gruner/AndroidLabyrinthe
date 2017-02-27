@@ -11,15 +11,14 @@ import java.util.TreeMap;
  */
 
 public class Game {
-    private Integer number;
-
-    public Game (){
-        number=0;
-    }
-
 
     public void doRun(Main2Activity.GameView canvas,Level level){
-        level.doRun(canvas);
+        boolean res = false;
+        while(!res) {
+            Log.d("TEST", "doRun: AGAIN");
+            res = level.doRun(canvas);
+        }
+        Log.d("TEST", "doRun: GAME END WIN");
     }
 
 

@@ -25,6 +25,7 @@ public class ArrivalBlock extends Block {
 
     @Override
     public boolean actionOnCollide(Bille bille) {
+        bille.setAlive(true);
         return true;
     }
 }

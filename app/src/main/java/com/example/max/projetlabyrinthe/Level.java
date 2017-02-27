@@ -2,6 +2,7 @@ package com.example.max.projetlabyrinthe;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.util.Log;
 
 import java.util.Collection;
 import java.util.List;
@@ -13,8 +14,9 @@ import java.util.List;
 public class Level {
 
     Bille bille;
-    Block arrival,start;
+    Block start;
     List<Block> wallList;
+
 
     private boolean terminated = false;
     int height;
@@ -29,7 +31,8 @@ public class Level {
         this.height = h;
         this.width = w;
         this.wallList=bList;
-        bille = new Bille(start.getX(), start.getY());
+        this.start= start;
+
     }
 
 
@@ -51,20 +54,20 @@ public class Level {
 
     }
 
-    public void doRun(Main2Activity.GameView gameView) {
-
-        while(!terminated) {
-            terminated = bille.update(time,wallList,arrival,width,height); //applique les mouvement
-
-
-            gameView.postInvalidate();
-            try {
-                Thread.sleep(20);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+    public boolean doRun(Main2Activity.GameView gameView) {
+        bille = new Bille(start.getX(), start.getY());
+            while(bille.isAlive()){
+                terminated = bille.update(time, wallList, width, height); //applique les mouvement
+                if(terminated) return true;
+                gameView.postInvalidate();
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
-        }
 
-
+        Log.d("TEST", "doRun: END");
+        return false;
     }
 }
