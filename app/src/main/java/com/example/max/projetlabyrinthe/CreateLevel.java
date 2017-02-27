@@ -37,11 +37,11 @@ public class CreateLevel {
         blockList.add(new Block(100,200,small,400));
         blockList.add(new Block(100,600,200,small));
 
-        ArrivalBlock arrival = new ArrivalBlock(340,440,small,small);
+        blockList.add( new ArrivalBlock(340,440,small,small));
 
         Block start = new Block(700,0,small,small);
 
-        Level level = new Level(screenWidth,screenHeight,arrival,start,blockList);
+        Level level = new Level(screenWidth,screenHeight,start,blockList);
         return  level;
     }
 
@@ -57,7 +57,7 @@ public class CreateLevel {
 
         Block start = new Block(700,0,small,small);
 
-        Level level = new Level(screenWidth,screenHeight,arrival,start,blockList);
+        Level level = new Level(screenWidth,screenHeight,start,blockList);
         return  level;
     }
 

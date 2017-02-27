@@ -25,12 +25,11 @@ public class Level {
     float aX;
     float aY;
 
-    public Level(int w,int h, Block a, Block start, List<Block> bList){
+    public Level(int w,int h, Block start, List<Block> bList){
         this.height = h;
         this.width = w;
         this.wallList=bList;
         bille = new Bille(start.getX(), start.getY());
-        this.arrival=a;
     }
 
 
@@ -44,11 +43,12 @@ public class Level {
     }
 
     public void draw(Canvas canvas, Paint p){
+        bille.draw(canvas, p);
         for(Block block : wallList) {
-            bille.draw(canvas, p);
+
             block.draw(canvas, p);
         }
-        arrival.draw(canvas,p);
+
     }
 
     public void doRun(Main2Activity.GameView gameView) {
@@ -59,7 +59,7 @@ public class Level {
 
             gameView.postInvalidate();
             try {
-                Thread.sleep(10);
+                Thread.sleep(20);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

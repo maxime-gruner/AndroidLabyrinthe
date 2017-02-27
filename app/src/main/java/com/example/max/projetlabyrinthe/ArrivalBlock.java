@@ -22,4 +22,9 @@ public class ArrivalBlock extends Block {
         canvas.drawRect(hitbox,p);
         p.setStyle(Paint.Style.STROKE);
     }
+
+    @Override
+    public boolean actionOnCollide(Bille bille) {
+        return true;
+    }
 }

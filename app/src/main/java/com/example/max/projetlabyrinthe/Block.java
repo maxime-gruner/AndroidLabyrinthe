@@ -1,6 +1,7 @@
 package com.example.max.projetlabyrinthe;
 
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.Paint;
 import android.util.Log;
@@ -19,6 +20,8 @@ public class Block {
 
     protected Rect hitbox ;
 
+    public String TAG = "test";
+
     public Block(int x,int y, int width, int height){
         this.x = x;
         this.y = y;
@@ -30,6 +33,7 @@ public class Block {
 
     public void draw(Canvas canvas, Paint p) {
         p.setStyle(Paint.Style.FILL);
+        p.setColor(Color.BLUE);
         canvas.drawRect(hitbox, p);
         p.setStyle(Paint.Style.STROKE);
     }
@@ -37,6 +41,33 @@ public class Block {
     public boolean collide(Rect r){
         Rect tmp = new Rect(hitbox);
         return  tmp.intersect(r);
+    }
+
+    public synchronized boolean actionOnCollide(Bille bille){
+        Log.d(TAG, "actionOnCollide: ");
+        if ( bille.getRight().intersect(hitbox)) { //gauche du bloc
+            Log.d(TAG, "update: GAUCHE");
+            bille.setX(getLeft() - bille.getSize());
+            bille.setxVelo(0);
+
+        } else if ( bille.getLeft().intersect(hitbox)) { //droite du bloc
+            Log.d(TAG, "update: DROITE");
+            bille.setX(getRight());
+            bille.setxVelo(0);
+
+        }
+        if (bille.getBottom().intersect(hitbox)) { //haut du bloc
+            Log.d(TAG, "update: HAUT");
+            bille.setY(getTop() - bille.getSize());
+            bille.setyVelo(0);
+
+        } else if ( bille.getTop().intersect(hitbox)) { //bas du bloc
+            Log.d(TAG, "update: BAS");
+            bille.setY(getBottom());
+            bille.setyVelo(0);
+
+        }
+        return false;
     }
 
     public int getY() {
@@ -66,6 +97,6 @@ public class Block {
     }
 
     public int getBottom(){
-        return y - height;
+        return y + height;
     }
 }

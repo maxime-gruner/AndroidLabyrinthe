@@ -19,13 +19,14 @@ public class Bille {
     private float y;
 
     private int size = 50; ///Taille de la bille
+    private int mass = 50;
 
     private float xVelo = 0; //vitesse actuelle de chaque axe
     private float yVelo = 0;
 
     private Rect hitbox; //servira pour les collision
 
-    private final float velocityLimit = 35; //vitesse limite
+    private final float velocityLimit = 50; //vitesse limite
 
     static String TAG ="TEST";
 
@@ -44,34 +45,32 @@ public class Bille {
         return y;
     }
 
-    public boolean update(float time, List<Block> blockList, Block arrival, int  screenWidth, int screenHeight){ //appliquera le mouvemement selon la vitesse, et les collisions, devra prendre une liste de block
+    public void setX(float x) {
+        this.x = x;
+    }
+
+    public void setY(float y) {
+        this.y = y;
+    }
+
+    public synchronized boolean update(float time, List<Block> blockList, Block arrival, int  screenWidth, int screenHeight){ //appliquera le mouvemement selon la vitesse, et les collisions, devra prendre une liste de block
 
         float xS = 0;
         float yS = 0;
-        if(arrival.collide(hitbox)){
-            return true;
-        }
+
         for(Block block : blockList) {
             if (block.collide(hitbox)) {
-                if (x + size > block.getLeft() && xVelo < 0) { //gauche du bloc
-                    Log.d(TAG, "update: GAUCHE");
-                    xVelo = 0;
-                } else if (x < block.getRight() && xVelo > 0) { //droite du bloc
-                    Log.d(TAG, "update: DROITE");
-                    xVelo = 0;
+                if (block.actionOnCollide(this)){
+                    return true;
                 }
-                if (y < block.getTop() && yVelo < 0) { //haut du bloc
-                    Log.d(TAG, "update: HAUT");
-                    yVelo = 0;
-                } else if (y - size > block.getBottom() && yVelo > 0) { //bas du bloc
-                    Log.d(TAG, "update: BAS");
-                    yVelo = 0;
-                }
+            }else{
+                xS = (xVelo/2)*time;
+                yS = (yVelo/2)*time;
             }
+
         }
 
-        xS = (xVelo/2)*time;
-        yS = (yVelo/2)*time;
+
 
         x -= xS;
         y -= yS;
@@ -94,9 +93,9 @@ public class Bille {
         return false;
     }
 
-    public void changeVelocity(float[] values, float time){ //change les valeur x velo par rapport a l accelrometre
-        xVelo += (1*(values[0]*5)*time) /2; //ici 5 serait plus ou moins le poids de la bille, peut etre a changer les deplacement seront plus facile
-        yVelo += (-1*(values[1]*5)*time)/2;
+    public synchronized void changeVelocity(float[] values, float time){ 
+        xVelo += (1*(values[0]*mass)*time) /2;
+        yVelo += (-1*(values[1]*mass)*time)/2;
 
         if(xVelo > velocityLimit) //test des limite
             xVelo = velocityLimit;
@@ -113,7 +112,55 @@ public class Bille {
         p.setColor(Color.BLUE);
         canvas.drawRect(hitbox,p);
 
+        p.setColor(Color.RED);
+        canvas.drawRect(getLeft(),p);
+        canvas.drawRect(getRight(),p);
+        canvas.drawRect(getBottom(),p);
+        canvas.drawRect(getTop(),p);
 
     }
 
+    public int getSize() {
+        return size;
+    }
+
+    public float getxVelo() {
+        return xVelo;
+    }
+
+    public void setxVelo(float xVelo) {
+        this.xVelo = xVelo;
+    }
+
+    public float getyVelo() {
+        return yVelo;
+    }
+
+    public void setyVelo(float yVelo) {
+        this.yVelo = yVelo;
+    }
+
+
+
+    public Rect getTop(){
+        int rX = (int)x+10;
+        int rY = (int) y;
+        return new Rect(rX,rY,rX+size-20,rY+ 5);
+    }
+
+    public Rect getBottom(){
+        int rX = (int)x+10;
+        int rY = (int)y+size-5;
+        return new Rect(rX,rY,rX+size-20,rY+5);
+    }
+    public Rect getLeft() {
+        int rX = (int)x;
+        int rY = (int)y+10;
+        return new Rect(rX,rY,rX+5,rY + size -20);
+    }
+    public Rect getRight(){
+        int rX = (int)x+size-5;
+        int rY = (int)y+10;
+        return new Rect(rX,rY,rX+5,rY+size-20) ;
+    }
 }
