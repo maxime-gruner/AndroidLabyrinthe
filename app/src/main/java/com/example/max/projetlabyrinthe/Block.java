@@ -20,8 +20,6 @@ public class Block {
 
     protected Rect hitbox ;
 
-    public String TAG = "test";
-
     public Block(int x,int y, int width, int height){
         this.x = x;
         this.y = y;
@@ -44,25 +42,20 @@ public class Block {
     }
 
     public synchronized boolean actionOnCollide(Bille bille){
-        Log.d(TAG, "actionOnCollide: ");
         if ( bille.getRight().intersect(hitbox)) { //gauche du bloc
-            Log.d(TAG, "update: GAUCHE");
             bille.setX(getLeft() - bille.getSize());
             bille.setxVelo(0);
 
         } else if ( bille.getLeft().intersect(hitbox)) { //droite du bloc
-            Log.d(TAG, "update: DROITE");
             bille.setX(getRight());
             bille.setxVelo(0);
 
         }
         if (bille.getBottom().intersect(hitbox)) { //haut du bloc
-            Log.d(TAG, "update: HAUT");
             bille.setY(getTop() - bille.getSize());
             bille.setyVelo(0);
 
         } else if ( bille.getTop().intersect(hitbox)) { //bas du bloc
-            Log.d(TAG, "update: BAS");
             bille.setY(getBottom());
             bille.setyVelo(0);
 

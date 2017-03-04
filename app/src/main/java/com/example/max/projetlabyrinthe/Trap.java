@@ -18,8 +18,7 @@ public class Trap extends Block {
     @Override
     public synchronized boolean actionOnCollide(Bille bille) {
         bille.setAlive(false);
-        Log.d(TAG, "actionOnCollide: DIE");
-        return false;
+       return false;
     }
 
     @Override

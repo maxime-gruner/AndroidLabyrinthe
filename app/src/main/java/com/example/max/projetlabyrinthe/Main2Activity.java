@@ -11,6 +11,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.RelativeLayout;
@@ -22,6 +23,9 @@ public class Main2Activity extends AppCompatActivity{
     private GameView gameView; //la vue du jeu
     private Level level; //le jeu
     private Game game;
+    private Sensor sensor;
+
+
 
 
     @Override
@@ -60,18 +64,27 @@ public class Main2Activity extends AppCompatActivity{
             }
         }).start();
 
-
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        sm.registerListener(gameView,sensor,SensorManager.SENSOR_DELAY_GAME);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        sm.unregisterListener(gameView);
+    }
 
     class GameView extends View implements SensorEventListener {
-
-        private Sensor sensor;
 
         public GameView(Context context) {
             super(context);
 
             sensor = sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+
 
             sm.registerListener(this,sensor,SensorManager.SENSOR_DELAY_GAME); // definit la frequence d actualisation du valeur du capteur
 
@@ -90,10 +103,9 @@ public class Main2Activity extends AppCompatActivity{
 
         }
 
-
-
         @Override
         public void onSensorChanged(SensorEvent event) {
+
             level.changeAccel(event.values); //change la valeur de l acceleration
         }
 

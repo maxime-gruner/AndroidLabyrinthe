@@ -67,7 +67,6 @@ public class Level {
                 }
             }
 
-        Log.d("TEST", "doRun: END");
         return false;
     }
 }
