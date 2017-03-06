@@ -17,21 +17,25 @@ public class Bille {
 
     private boolean alive = true;
 
-    public static int SIZE = 50; ///Taille de la bille
+    public int size = 50; ///Taille de la bille
     private int mass = 4;
+
+    private float accelX = 0;
+    private float accelY = 0;
 
     private float xVelo = 0; //vitesse actuelle de chaque axe
     private float yVelo = 0;
 
+
     private Rect hitbox; //servira pour les collision
 
-    private final float velocityLimit = 50; //vitesse limite
+    private final float velocityLimit = 40; //vitesse limite
 
     public Bille(int spawnX,int spawnY){
 
         x = spawnX;
         y = spawnY;
-        hitbox = new Rect((int)x,(int)y,(int)x+ SIZE,(int)y+ SIZE);
+        hitbox = new Rect((int)x,(int)y,(int)x+ size,(int)y+ size);
     }
 
     public float getX() {
@@ -88,8 +92,12 @@ public class Bille {
     }
 
     public synchronized void changeVelocity(float[] values, float time){
-        xVelo += (1*(values[0]*mass)*time) /2;
-        yVelo += (-1*(values[1]*mass)*time)/2;
+
+
+
+        xVelo += (1*(values[0])*time);
+        yVelo += (-1*(values[1])*time);
+
 
         if(xVelo > velocityLimit) //test des limite
             xVelo = velocityLimit;
@@ -115,7 +123,7 @@ public class Bille {
     }
 
     public int getSize() {
-        return SIZE;
+        return size;
     }
 
     public float getxVelo() {
@@ -139,23 +147,23 @@ public class Bille {
     public Rect getTop(){
         int rX = (int)x+10;
         int rY = (int) y;
-        return new Rect(rX,rY,rX+ SIZE -20,rY+ 5);
+        return new Rect(rX,rY,rX+ size -20,rY+ 5);
     }
 
     public Rect getBottom(){
         int rX = (int)x+10;
-        int rY = (int)y+ SIZE -5;
-        return new Rect(rX,rY,rX+ SIZE -20,rY+5);
+        int rY = (int)y+ size -5;
+        return new Rect(rX,rY,rX+ size -20,rY+5);
     }
     public Rect getLeft() {
         int rX = (int)x;
         int rY = (int)y+10;
-        return new Rect(rX,rY,rX+5,rY + SIZE -20);
+        return new Rect(rX,rY,rX+5,rY + size -20);
     }
     public Rect getRight(){
-        int rX = (int)x+ SIZE -5;
+        int rX = (int)x+ size -5;
         int rY = (int)y+10;
-        return new Rect(rX,rY,rX+5,rY+ SIZE -20) ;
+        return new Rect(rX,rY,rX+5,rY+ size -20) ;
     }
 
     public boolean isAlive() {

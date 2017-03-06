@@ -18,6 +18,7 @@ public class Level {
     List<Block> wallList;
 
 
+
     private boolean terminated = false;
     int height;
     int width;

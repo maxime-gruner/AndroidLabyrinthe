@@ -1,11 +1,6 @@
 package com.example.max.projetlabyrinthe;
 
-import android.support.annotation.NonNull;
-import android.util.Log;
-
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -16,7 +11,6 @@ public class CreateLevel {
 
     private static int small = 10, medium = 50, big = 100;
 
-    private static int space = Bille.SIZE*2;
 
     public static Level loadLevel(int screenWidth, int screnHeight ,int i){
 
@@ -66,16 +60,34 @@ public class CreateLevel {
 
     private static Level createLvl2 (int screenWidth, int screenHeight){
         List<Block> blockList = new ArrayList<>();
-        blockList.add(new Block(1,200,700,small));
-        blockList.add(new Block(700,200,small,500));
-        blockList.add(new Block(300,600,200,small));
-        blockList.add(new Block(100,200,small,400));
-        blockList.add(new Block(100,600,200,small));
 
-        blockList.add(new BounceBlock(900,900,100,100));
-        blockList.add(new ArrivalBlock(340,440,small,small));
+        int widthS = screenWidth/11;
+        int heightS = screenHeight/17;
 
-        Block start = new Block(700,0,small,small);
+        blockList.add(new Block(widthS,0,widthS,9*heightS));
+        blockList.add(new Block(widthS,10*heightS,2*widthS,heightS));
+        blockList.add(new Block(0,12*heightS,5*widthS,heightS));
+        blockList.add(new Block(5*widthS,2*heightS,3*widthS,heightS));
+        blockList.add(new Block(7*widthS,3*heightS,widthS,15*heightS));
+
+
+        blockList.add(new Trap(0,11*heightS,widthS,heightS));
+        blockList.add(new Trap(2*widthS,5*heightS,widthS,heightS));
+        blockList.add(new Trap(2*widthS,7*heightS,widthS,heightS));
+        blockList.add(new Trap(6*widthS,4*heightS,widthS,heightS));
+        blockList.add(new Trap(6*widthS,6*heightS,widthS,heightS));
+
+        blockList.add(new BounceBlock(6*widthS,8*heightS,widthS,heightS));
+        blockList.add(new BounceBlock(6*widthS,9*heightS,widthS,heightS));
+        blockList.add(new BounceBlock(6*widthS,10*heightS,widthS,heightS));
+
+        blockList.add(new MovingBlock(3*widthS,2*heightS,widthS,heightS,widthS*2,widthS*5));
+        blockList.add(new MovingBlock(9*widthS,7*heightS,widthS,heightS,widthS*8,widthS*11));
+
+
+        blockList.add(new ArrivalBlock(widthS*9,heightS*16,widthS,heightS));
+
+        Block start = new Block(widthS,heightS,widthS,heightS);
 
         Level level = new Level(screenWidth,screenHeight,start,blockList);
         return  level;
