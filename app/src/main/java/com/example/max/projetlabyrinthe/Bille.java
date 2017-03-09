@@ -18,7 +18,7 @@ public class Bille {
     private boolean alive = true;
 
     public int size = 50; ///Taille de la bille
-    private int mass = 4;
+    private int mass = 6;
 
     private float accelX = 0;
     private float accelY = 0;
@@ -95,8 +95,10 @@ public class Bille {
 
 
 
-        xVelo += (1*(values[0])*time);
-        yVelo += (-1*(values[1])*time);
+        xVelo += (1*(values[0])*time)*mass;
+        yVelo += (-1*(values[1])*time)*mass;
+
+
 
 
         if(xVelo > velocityLimit) //test des limite

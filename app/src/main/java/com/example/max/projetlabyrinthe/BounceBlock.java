@@ -27,6 +27,7 @@ public class BounceBlock extends Block {
     public boolean actionOnCollide(Bille bille) {
         bille.setxVelo(-bille.getxVelo());
         bille.setyVelo(-bille.getyVelo());
+
         return false;
     }
 }

@@ -31,6 +31,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/level2" />
+        <Button
+            android:text="Level 3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/level3" />
     </LinearLayout>
 
     <TextView

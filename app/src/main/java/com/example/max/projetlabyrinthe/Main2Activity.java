@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -12,6 +13,7 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.widget.RelativeLayout;
@@ -107,11 +109,26 @@ public class Main2Activity extends AppCompatActivity{
         public void onSensorChanged(SensorEvent event) {
 
             level.changeAccel(event.values); //change la valeur de l acceleration
+
+
         }
 
         @Override
         public void onAccuracyChanged(Sensor sensor, int accuracy) {
 
+        }
+
+        @Override
+        public boolean onTouchEvent(MotionEvent event) {
+           float x = event.getX();
+            float y= event.getY();
+
+            if(level.hasInterrupteur() && level.clickOnbox((int)x,(int)y) ){
+                level.open();
+
+            }
+
+            return super.onTouchEvent(event);
         }
     }
 

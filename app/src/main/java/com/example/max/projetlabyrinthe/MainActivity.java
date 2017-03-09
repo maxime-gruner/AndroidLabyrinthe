@@ -13,6 +13,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Button startLvl1;
     private Button startLvl2;
+    private Button startLvl3;
 
     private Intent intent;
 
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("HEIGHT", (size.y));
         startLvl1 = (Button) findViewById(R.id.level1);
         startLvl2 = (Button) findViewById(R.id.level2);
+        startLvl3 = (Button) findViewById(R.id.level3);
 
         startLvl1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,6 +52,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 intent.putExtra("LEVEL",2);
+                startActivity(intent);
+            }
+        });
+        startLvl3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent.putExtra("LEVEL",3);
                 startActivity(intent);
             }
         });

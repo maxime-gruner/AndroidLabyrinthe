@@ -2,6 +2,7 @@ package com.example.max.projetlabyrinthe;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.util.Log;
 
 import java.util.Collection;
@@ -16,6 +17,8 @@ public class Level {
     Bille bille;
     Block start;
     List<Block> wallList;
+    DoorBlock door;
+    boolean hasInterrupteur = false;
 
 
 
@@ -33,6 +36,12 @@ public class Level {
         this.width = w;
         this.wallList=bList;
         this.start= start;
+
+    }
+    public Level(int w,int h, Block start, List<Block> bList,DoorBlock door){
+        this(w,h,start,bList);
+        hasInterrupteur = true;
+        this.door = door;
 
     }
 
@@ -69,5 +78,29 @@ public class Level {
             }
 
         return false;
+    }
+
+    public boolean clickOnbox(int x, int y) {
+        return door.click(x,y);
+    }
+
+    public void open(){
+        door.open();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                Log.d("test", "run: lock");
+                door.close();
+            }
+        }).start();
+    }
+
+    public boolean hasInterrupteur() {
+        return hasInterrupteur;
     }
 }

@@ -18,6 +18,8 @@ public class CreateLevel {
             return createLvl1(screenWidth,screnHeight);
         }else if(i == 2){
             return createLvl2(screenWidth,screnHeight);
+        }else if(i == 3){
+            return createLvl3(screenWidth,screnHeight);
         }else{
             return null;
         }
@@ -92,5 +94,31 @@ public class CreateLevel {
         Level level = new Level(screenWidth,screenHeight,start,blockList);
         return  level;
     }
+
+
+    private static Level createLvl3 (int screenWidth, int screenHeight){
+        List<Block> blockList = new ArrayList<>();
+
+        int widthS = screenWidth/11;
+        int heightS = screenHeight/17;
+
+        blockList.add(new Block(widthS,0,widthS,9*heightS));
+        blockList.add(new Block(widthS,10*heightS,2*widthS,heightS));
+        blockList.add(new Block(0,12*heightS,5*widthS,heightS));
+        blockList.add(new Block(5*widthS,2*heightS,3*widthS,heightS));
+        blockList.add(new Block(7*widthS,3*heightS,widthS,15*heightS));
+
+        DoorBlock door = new DoorBlock(2*widthS,2*heightS,3*widthS,heightS);
+        blockList.add(door);
+
+        blockList.add(new ArrivalBlock(widthS*9,heightS*16,widthS,heightS));
+
+        Block start = new Block(widthS,heightS,widthS,heightS);
+
+        Level level = new Level(screenWidth,screenHeight,start,blockList,door);
+        return  level;
+    }
+
+
 
 }
