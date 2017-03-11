@@ -20,6 +20,8 @@ public class CreateLevel {
             return createLvl2(screenWidth,screnHeight);
         }else if(i == 3){
             return createLvl3(screenWidth,screnHeight);
+        }else if(i == 4){
+            return createLvl4(screenWidth,screnHeight);
         }else{
             return null;
         }
@@ -102,20 +104,47 @@ public class CreateLevel {
         int widthS = screenWidth/11;
         int heightS = screenHeight/17;
 
-        blockList.add(new Block(widthS,0,widthS,9*heightS));
-        blockList.add(new Block(widthS,10*heightS,2*widthS,heightS));
-        blockList.add(new Block(0,12*heightS,5*widthS,heightS));
-        blockList.add(new Block(5*widthS,2*heightS,3*widthS,heightS));
-        blockList.add(new Block(7*widthS,3*heightS,widthS,15*heightS));
+        blockList.add(new Block(widthS,3*heightS,10*widthS,heightS));
+        blockList.add(new Block(widthS,3*heightS,widthS,13*heightS));
+        blockList.add(new Block(3*widthS,6*heightS,4*widthS,heightS));
+        blockList.add(new Block(6*widthS,6*heightS,widthS,5*heightS));
+        blockList.add(new Block(2*widthS,10*heightS,5*widthS,heightS));
+        blockList.add(new Block(9*widthS,5*heightS,widthS,12*heightS));
 
-        DoorBlock door = new DoorBlock(2*widthS,2*heightS,3*widthS,heightS);
+        DoorBlock door = new DoorBlock(7*widthS,9*heightS,2*widthS,heightS);
         blockList.add(door);
+
+        blockList.add(new ArrivalBlock(widthS,heightS*16,widthS,heightS));
+        Block start = new Block(5*widthS,7*heightS,widthS,heightS);
+
+        blockList.add(new MovingBlock(7*widthS,7*heightS,widthS,heightS,7*widthS,9*widthS));
+        blockList.add(new MovingBlock(3*widthS,12*heightS,widthS,heightS,3*widthS,8*widthS));
+        blockList.add(new MovingBlock(7*widthS,14*heightS,widthS,heightS,3*widthS,8*widthS));
+
+        blockList.add(new Trap(2*widthS,heightS*12,widthS,heightS));
+        blockList.add(new Trap(2*widthS,heightS*14,widthS,heightS));
+        blockList.add(new Trap(8*widthS,heightS*12,widthS,heightS));
+        blockList.add(new Trap(8*widthS,heightS*14,widthS,heightS));
+
+        Level level = new Level(screenWidth,screenHeight,start,blockList,door);
+        return  level;
+    }
+
+    private static Level createLvl4 (int screenWidth, int screenHeight){
+        List<Block> blockList = new ArrayList<>();
+
+        int widthS = screenWidth/11;
+        int heightS = screenHeight/17;
+
+
+        blockList.add(new Trap(0,9*heightS,17*widthS,heightS));
+
 
         blockList.add(new ArrivalBlock(widthS*9,heightS*16,widthS,heightS));
 
         Block start = new Block(widthS,heightS,widthS,heightS);
 
-        Level level = new Level(screenWidth,screenHeight,start,blockList,door);
+        Level level = new Level(screenWidth,screenHeight,start,blockList);
         return  level;
     }
 

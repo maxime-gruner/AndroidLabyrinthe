@@ -94,7 +94,6 @@ public class Level {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                Log.d("test", "run: lock");
                 door.close();
             }
         }).start();
@@ -102,5 +101,9 @@ public class Level {
 
     public boolean hasInterrupteur() {
         return hasInterrupteur;
+    }
+
+    public void shake(){
+        bille.jump();
     }
 }

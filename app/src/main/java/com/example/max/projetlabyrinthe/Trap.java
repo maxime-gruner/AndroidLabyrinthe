@@ -17,7 +17,10 @@ public class Trap extends Block {
 
     @Override
     public synchronized boolean actionOnCollide(Bille bille) {
-        bille.setAlive(false);
+        if(!bille.isJumping()){
+            bille.setAlive(false);
+        }
+
        return false;
     }
 

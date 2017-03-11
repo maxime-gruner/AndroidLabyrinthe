@@ -54,6 +54,8 @@ public class Bille {
         this.y = y;
     }
 
+    boolean jumping = false;
+
     public synchronized boolean update(float time, List<Block> blockList, int  screenWidth, int screenHeight){ //appliquera le mouvemement selon la vitesse, et les collisions, devra prendre une liste de block
 
         float xS = 0;
@@ -113,14 +115,15 @@ public class Bille {
 
     public void draw(Canvas canvas,Paint p){
         p.setStrokeWidth(5);
-        p.setColor(Color.BLUE);
+        p.setStyle(Paint.Style.FILL);
+        if(jumping)
+            p.setColor(Color.CYAN);
+        else
+            p.setColor(Color.BLUE);
         canvas.drawRect(hitbox,p);
 
         p.setColor(Color.RED);
-        canvas.drawRect(getLeft(),p);
-        canvas.drawRect(getRight(),p);
-        canvas.drawRect(getBottom(),p);
-        canvas.drawRect(getTop(),p);
+
 
     }
 
@@ -174,5 +177,24 @@ public class Bille {
 
     public void setAlive(boolean alive) {
         this.alive = alive;
+    }
+
+    public void jump(){
+        jumping = true;
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                jumping = false;
+            }
+        }).start();
+    }
+
+    public boolean isJumping() {
+        return jumping;
     }
 }

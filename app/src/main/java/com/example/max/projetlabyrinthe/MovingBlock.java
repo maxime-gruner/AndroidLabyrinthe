@@ -51,10 +51,10 @@ public class MovingBlock extends Block{
     private void move(){
         if(x+width>maxOffsetX && direction == 1){ //change vers la gauche
             direction = -1;
-            Log.d(TAG, "move: g");
+
         }else if(x<minOffsetX && direction == -1){
             direction = 1;
-            Log.d(TAG, "move: d");
+
         }
 
         hitbox.offsetTo(x+(speed*direction),y);

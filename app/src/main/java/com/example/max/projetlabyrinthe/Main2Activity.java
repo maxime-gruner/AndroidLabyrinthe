@@ -82,11 +82,20 @@ public class Main2Activity extends AppCompatActivity{
 
     class GameView extends View implements SensorEventListener {
 
+        private float mAccelLast;
+        private float mAccelCurrent;
+        private float mAccel;
+
+
         public GameView(Context context) {
             super(context);
 
+
             sensor = sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 
+            mAccel = 0;
+            mAccelCurrent = SensorManager.GRAVITY_EARTH;
+            mAccelLast = SensorManager.GRAVITY_EARTH;
 
             sm.registerListener(this,sensor,SensorManager.SENSOR_DELAY_GAME); // definit la frequence d actualisation du valeur du capteur
 
@@ -108,7 +117,23 @@ public class Main2Activity extends AppCompatActivity{
         @Override
         public void onSensorChanged(SensorEvent event) {
 
-            level.changeAccel(event.values); //change la valeur de l acceleration
+            float x = event.values[0];
+            float y = event.values[1];
+            float z = event.values[2];
+            mAccelLast = mAccelCurrent;
+            mAccelCurrent = (float) Math.sqrt((double) (x*x + y*y + z*z)); //detecte le shake
+            float delta = mAccelCurrent - mAccelLast;
+            mAccel = mAccel * 0.9f + delta;
+
+            if(mAccel>10){
+                level.shake(); //CHNGER
+                Log.d("test", "onSensorChanged: SHAKE");
+            }else{
+                level.changeAccel(event.values); //change la valeur de l acceleration
+
+            }
+
+
 
 
         }
