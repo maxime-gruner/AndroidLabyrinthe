@@ -61,7 +61,7 @@ public class Main2Activity extends AppCompatActivity{
         layout.addView(gameView);
         game = new Game();
 
-        level = CreateLevel.loadLevel(screenWidth,screenHeight,levelNum);
+        level = CreateLevel.loadLevel(screenWidth,screenHeight,levelNum,gameView.getContext());
 
         new Thread(new Runnable() {
             @Override

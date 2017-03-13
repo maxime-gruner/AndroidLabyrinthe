@@ -1,5 +1,6 @@
 package com.example.max.projetlabyrinthe;
 
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Rect;
@@ -20,7 +21,18 @@ public class Block {
 
     protected Rect hitbox ;
 
+    protected Bitmap sprite;
+
     public Block(int x,int y, int width, int height){
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+
+        hitbox = new Rect(x,y,x+width,y+height);
+    }
+    public Block(Bitmap sprite,int x,int y, int width, int height){
+        this.sprite = sprite;
         this.x = x;
         this.y = y;
         this.width = width;
@@ -32,7 +44,8 @@ public class Block {
     public void draw(Canvas canvas, Paint p) {
         p.setStyle(Paint.Style.FILL);
         p.setColor(Color.BLUE);
-        canvas.drawRect(hitbox, p);
+        //canvas.drawRect(hitbox, p);
+        canvas.drawBitmap(sprite,null,hitbox,p);
         p.setStyle(Paint.Style.STROKE);
     }
 

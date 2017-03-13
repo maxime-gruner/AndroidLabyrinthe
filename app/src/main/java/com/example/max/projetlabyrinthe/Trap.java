@@ -1,5 +1,6 @@
 package com.example.max.projetlabyrinthe;
 
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -11,8 +12,12 @@ import android.util.Log;
 
 public class Trap extends Block {
 
-    public Trap(int x, int y, int width, int height) {
+    public Trap( int x, int y, int width, int height) {
         super(x, y, width, height);
+    }
+
+    public Trap(Bitmap sprite, int x, int y, int width, int height) {
+        super(sprite,x, y, width, height);
     }
 
     @Override

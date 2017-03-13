@@ -1,5 +1,7 @@
 package com.example.max.projetlabyrinthe;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
@@ -65,7 +67,7 @@ public class Level {
     }
 
     public boolean doRun(Main2Activity.GameView gameView) {
-        bille = new Bille(start.getX(), start.getY());
+        bille = new Bille(BitmapFactory.decodeResource(gameView.getResources(),R.drawable.ball),start.getX(), start.getY());
             while(bille.isAlive()){
                 terminated = bille.update(time, wallList, width, height); //applique les mouvement
                 if(terminated) return true;

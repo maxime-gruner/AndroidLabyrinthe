@@ -1,5 +1,7 @@
 package com.example.max.projetlabyrinthe;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -27,12 +29,13 @@ public class Bille {
     private float yVelo = 0;
 
 
+    Bitmap sprite;
     private Rect hitbox; //servira pour les collision
 
     private final float velocityLimit = 25; //vitesse limite
 
-    public Bille(int spawnX,int spawnY){
-
+    public Bille(Bitmap sprite,int spawnX,int spawnY){
+        this.sprite = sprite;
         x = spawnX;
         y = spawnY;
         hitbox = new Rect((int)x,(int)y,(int)x+ size,(int)y+ size);
@@ -118,9 +121,12 @@ public class Bille {
         p.setStyle(Paint.Style.FILL);
         if(jumping)
             p.setColor(Color.CYAN);
-        else
-            p.setColor(Color.BLUE);
-        canvas.drawRect(hitbox,p);
+        else {
+
+            //p.setColor(Color.BLUE);
+        }
+        canvas.drawBitmap(sprite,null,hitbox,null);
+        //canvas.drawRect(hitbox,p);
 
         p.setColor(Color.RED);
 

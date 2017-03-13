@@ -1,5 +1,6 @@
 package com.example.max.projetlabyrinthe;
 
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -14,8 +15,8 @@ public class DoorBlock extends Block {
     int lastX;
     Rect lastBox;
 
-    public DoorBlock(int x, int y, int width, int height ) {
-        super(x, y, width, height);
+    public DoorBlock(Bitmap sprite, int x, int y, int width, int height ) {
+        super(sprite,x, y, width, height);
 
     }
 
@@ -36,7 +37,8 @@ public class DoorBlock extends Block {
     public void draw(Canvas canvas, Paint p) {
         p.setStyle(Paint.Style.FILL);
         p.setColor(Color.YELLOW);
-        canvas.drawRect(hitbox, p);
+        canvas.drawBitmap(sprite,null,hitbox,p);
+        //canvas.drawRect(hitbox, p);
         p.setStyle(Paint.Style.STROKE);
     }
 

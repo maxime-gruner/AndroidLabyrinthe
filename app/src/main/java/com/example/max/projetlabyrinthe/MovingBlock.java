@@ -1,5 +1,6 @@
 package com.example.max.projetlabyrinthe;
 
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -20,8 +21,8 @@ public class MovingBlock extends Block{
     int maxOffsetX;
     int minOffsetX;
 
-    public MovingBlock(int x, int y, int width, int height,int minX,int maxX) {
-        super(x, y, width, height);
+    public MovingBlock(Bitmap sprite,int x, int y, int width, int height, int minX, int maxX) {
+        super(sprite,x, y, width, height);
         maxOffsetX = maxX;
         minOffsetX = minX;
 
@@ -32,7 +33,8 @@ public class MovingBlock extends Block{
     public void draw(Canvas canvas, Paint p) {
         p.setColor(Color.MAGENTA);
         p.setStyle(Paint.Style.FILL);
-        canvas.drawRect(hitbox,p);
+        //canvas.drawRect(hitbox,p);
+        canvas.drawBitmap(sprite,null,hitbox,p);
         p.setStyle(Paint.Style.STROKE);
     }
 

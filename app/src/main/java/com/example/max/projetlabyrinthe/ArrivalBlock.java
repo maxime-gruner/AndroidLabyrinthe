@@ -1,5 +1,6 @@
 package com.example.max.projetlabyrinthe;
 
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -10,8 +11,8 @@ import android.graphics.Paint;
 
 public class ArrivalBlock extends Block {
 
-    public ArrivalBlock(int x, int y, int width, int height) {
-        super(x, y, width, height);
+    public ArrivalBlock(Bitmap sprite, int x, int y, int width, int height) {
+        super(sprite,x, y, width, height);
     }
 
 
@@ -19,7 +20,8 @@ public class ArrivalBlock extends Block {
     public void draw(Canvas canvas, Paint p) {
         p.setColor(Color.GREEN);
         p.setStyle(Paint.Style.FILL);
-        canvas.drawRect(hitbox,p);
+        //canvas.drawRect(hitbox,p);
+        canvas.drawBitmap(sprite,null,hitbox,p);
         p.setStyle(Paint.Style.STROKE);
     }
 
