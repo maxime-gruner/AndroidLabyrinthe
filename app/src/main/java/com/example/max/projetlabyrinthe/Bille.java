@@ -29,7 +29,7 @@ public class Bille {
 
     private Rect hitbox; //servira pour les collision
 
-    private final float velocityLimit = 40; //vitesse limite
+    private final float velocityLimit = 25; //vitesse limite
 
     public Bille(int spawnX,int spawnY){
 
@@ -97,8 +97,8 @@ public class Bille {
 
 
 
-        xVelo += (1*(values[0])*time)*mass;
-        yVelo += (-1*(values[1])*time)*mass;
+        xVelo += (1*(values[0])*time);
+        yVelo += (-1*(values[1])*time);
 
 
 

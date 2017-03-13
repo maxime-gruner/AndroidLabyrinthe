@@ -26,7 +26,7 @@ public class Level {
     int height;
     int width;
 
-    float time = 0.20f;
+    float time = 0.40f;
 
     float aX;
     float aY;

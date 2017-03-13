@@ -13,9 +13,12 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Display;
 import android.view.MotionEvent;
+import android.view.Surface;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.RelativeLayout;
 
 public class Main2Activity extends AppCompatActivity{
@@ -27,7 +30,7 @@ public class Main2Activity extends AppCompatActivity{
     private Game game;
     private Sensor sensor;
 
-
+    private Display mDisplay;
 
 
     @Override
@@ -51,6 +54,8 @@ public class Main2Activity extends AppCompatActivity{
         RelativeLayout layout = (RelativeLayout) findViewById(R.id.activity_main2);
 
         sm = (SensorManager) getSystemService(this.SENSOR_SERVICE);
+
+        mDisplay = ((WindowManager) getSystemService(WINDOW_SERVICE)).getDefaultDisplay();
 
         gameView = new GameView(this);
         layout.addView(gameView);
@@ -117,19 +122,47 @@ public class Main2Activity extends AppCompatActivity{
         @Override
         public void onSensorChanged(SensorEvent event) {
 
-            float x = event.values[0];
-            float y = event.values[1];
-            float z = event.values[2];
+            if (event.sensor.getType() != Sensor.TYPE_ACCELEROMETER)
+                return;
+
+            float val[] = new float[3];
+            float x =0; ;
+            float y =0;
+            float z =0;
+
+            switch(mDisplay.getRotation()){
+                case Surface.ROTATION_0:
+                    val[0] = event.values[0];
+                    val[1] = event.values[1];
+                    break;
+                case Surface.ROTATION_90:
+                    val[0] = -event.values[1];
+                    val[1] = event.values[0];
+                    break;
+                case Surface.ROTATION_180:
+                    val[0] = -event.values[0];
+                    val[1] = -event.values[1];
+                    break;
+                case Surface.ROTATION_270:
+                    val[0] = event.values[1];
+                    val[1] = -event.values[0];
+                    break;
+            }
+            val[2] = event.values[2];
+
+
             mAccelLast = mAccelCurrent;
-            mAccelCurrent = (float) Math.sqrt((double) (x*x + y*y + z*z)); //detecte le shake
+            mAccelCurrent = (float) Math.sqrt((double) (val[0]*val[0] + val[1]*val[1] + val[2]*val[2])); //detecte le shake
             float delta = mAccelCurrent - mAccelLast;
             mAccel = mAccel * 0.9f + delta;
 
+
+
             if(mAccel>10){
-                level.shake(); //CHNGER
+                level.shake();
                 Log.d("test", "onSensorChanged: SHAKE");
             }else{
-                level.changeAccel(event.values); //change la valeur de l acceleration
+                level.changeAccel(val); //change la valeur de l acceleration
 
             }
 
