@@ -33,7 +33,8 @@ public class Trap extends Block {
     public void draw(Canvas canvas, Paint p) {
         p.setStyle(Paint.Style.FILL);
         p.setColor(Color.BLACK);
-        canvas.drawRect(hitbox, p);
+        canvas.drawBitmap(sprite,null,hitbox,p);
+        //canvas.drawRect(hitbox, p);
         p.setStyle(Paint.Style.STROKE);
     }
 }

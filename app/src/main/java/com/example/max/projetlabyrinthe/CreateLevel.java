@@ -35,10 +35,11 @@ public class CreateLevel {
         int widthS = screenWidth/11;
         int heightS = screenHeight/17;
 
+
         blockList.add(new Block(BitmapFactory.decodeResource(context.getResources(),R.drawable.wallh),0,heightS,8*widthS,heightS));
         blockList.add(new Block(BitmapFactory.decodeResource(context.getResources(),R.drawable.wallv),7*widthS,heightS,widthS,5*heightS));
-        blockList.add(new Trap(11*widthS,heightS,widthS,heightS));
-        blockList.add(new Trap(6*widthS,3*heightS,widthS,heightS));
+        blockList.add(new Trap(BitmapFactory.decodeResource(context.getResources(),R.drawable.hole),11*widthS,heightS,widthS,heightS));
+        blockList.add(new Trap(BitmapFactory.decodeResource(context.getResources(),R.drawable.hole),6*widthS,3*heightS,widthS,heightS));
 
 
         blockList.add(new Block(BitmapFactory.decodeResource(context.getResources(),R.drawable.wallv),4*widthS,4*heightS,widthS,3*heightS));
@@ -46,10 +47,10 @@ public class CreateLevel {
 
         blockList.add(new Block(BitmapFactory.decodeResource(context.getResources(),R.drawable.wallv),widthS,6*heightS,widthS,5*heightS));
         blockList.add(new Block(BitmapFactory.decodeResource(context.getResources(),R.drawable.wallh),widthS,11*heightS,7*widthS,heightS));
-        blockList.add(new Trap(2*widthS,7*heightS,widthS,heightS));
+        blockList.add(new Trap(BitmapFactory.decodeResource(context.getResources(),R.drawable.hole),2*widthS,7*heightS,widthS,heightS));
 
         blockList.add(new Block(BitmapFactory.decodeResource(context.getResources(),R.drawable.wallv),8*widthS,11*heightS,widthS,8*heightS));
-        blockList.add(new Trap(9*widthS,6*heightS,widthS,heightS));
+        blockList.add(new Trap(BitmapFactory.decodeResource(context.getResources(),R.drawable.hole),9*widthS,6*heightS,widthS,heightS));
 
 
         blockList.add( new ArrivalBlock(BitmapFactory.decodeResource(context.getResources(),R.drawable.exit),9*widthS,16*heightS,widthS,heightS));
@@ -75,11 +76,11 @@ public class CreateLevel {
         blockList.add(new Block(BitmapFactory.decodeResource(context.getResources(),R.drawable.wallv),7*widthS,3*heightS,widthS,15*heightS));
 
 
-        blockList.add(new Trap(0,11*heightS,widthS,heightS));
-        blockList.add(new Trap(2*widthS,5*heightS,widthS,heightS));
-        blockList.add(new Trap(2*widthS,7*heightS,widthS,heightS));
-        blockList.add(new Trap(6*widthS,4*heightS,widthS,heightS));
-        blockList.add(new Trap(6*widthS,6*heightS,widthS,heightS));
+        blockList.add(new Trap(BitmapFactory.decodeResource(context.getResources(),R.drawable.hole),0,11*heightS,widthS,heightS));
+        blockList.add(new Trap(BitmapFactory.decodeResource(context.getResources(),R.drawable.hole),2*widthS,5*heightS,widthS,heightS));
+        blockList.add(new Trap(BitmapFactory.decodeResource(context.getResources(),R.drawable.hole),2*widthS,7*heightS,widthS,heightS));
+        blockList.add(new Trap(BitmapFactory.decodeResource(context.getResources(),R.drawable.hole),6*widthS,4*heightS,widthS,heightS));
+        blockList.add(new Trap(BitmapFactory.decodeResource(context.getResources(),R.drawable.hole),6*widthS,6*heightS,widthS,heightS));
 
         blockList.add(new BounceBlock(BitmapFactory.decodeResource(context.getResources(),R.drawable.bumper),6*widthS,8*heightS,widthS,heightS));
         blockList.add(new BounceBlock(BitmapFactory.decodeResource(context.getResources(),R.drawable.bumper),6*widthS,9*heightS,widthS,heightS));
@@ -121,10 +122,10 @@ public class CreateLevel {
         blockList.add(new MovingBlock(BitmapFactory.decodeResource(context.getResources(),R.drawable.wallh),3*widthS,12*heightS,widthS,heightS,3*widthS,8*widthS));
         blockList.add(new MovingBlock(BitmapFactory.decodeResource(context.getResources(),R.drawable.wallh),7*widthS,14*heightS,widthS,heightS,3*widthS,8*widthS));
 
-        blockList.add(new Trap(2*widthS,heightS*12,widthS,heightS));
-        blockList.add(new Trap(2*widthS,heightS*14,widthS,heightS));
-        blockList.add(new Trap(8*widthS,heightS*12,widthS,heightS));
-        blockList.add(new Trap(8*widthS,heightS*14,widthS,heightS));
+        blockList.add(new Trap(BitmapFactory.decodeResource(context.getResources(),R.drawable.hole),2*widthS,heightS*12,widthS,heightS));
+        blockList.add(new Trap(BitmapFactory.decodeResource(context.getResources(),R.drawable.hole),2*widthS,heightS*14,widthS,heightS));
+        blockList.add(new Trap(BitmapFactory.decodeResource(context.getResources(),R.drawable.hole),8*widthS,heightS*12,widthS,heightS));
+        blockList.add(new Trap(BitmapFactory.decodeResource(context.getResources(),R.drawable.hole),8*widthS,heightS*14,widthS,heightS));
 
         Level level = new Level(screenWidth,screenHeight,start,blockList,door);
         return  level;
@@ -137,7 +138,7 @@ public class CreateLevel {
         int heightS = screenHeight/17;
 
 
-        blockList.add(new Trap(0,9*heightS,17*widthS,heightS));
+        blockList.add(new Trap(BitmapFactory.decodeResource(context.getResources(),R.drawable.hole),0,9*heightS,17*widthS,heightS));
 
 
         blockList.add(new ArrivalBlock(BitmapFactory.decodeResource(context.getResources(),R.drawable.exit),widthS*9,heightS*16,widthS,heightS));

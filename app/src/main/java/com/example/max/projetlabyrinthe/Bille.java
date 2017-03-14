@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.DrawFilter;
 import android.graphics.Paint;
 import android.graphics.Rect;
 
@@ -119,13 +120,15 @@ public class Bille {
     public void draw(Canvas canvas,Paint p){
         p.setStrokeWidth(5);
         p.setStyle(Paint.Style.FILL);
-        if(jumping)
-            p.setColor(Color.CYAN);
-        else {
+        if(jumping) {
+            p.setColor(Color.DKGRAY);
+            canvas.drawOval(hitbox.left-10,hitbox.top-10,hitbox.right,hitbox.bottom,p);
 
-            //p.setColor(Color.BLUE);
+
         }
         canvas.drawBitmap(sprite,null,hitbox,null);
+
+
         //canvas.drawRect(hitbox,p);
 
         p.setColor(Color.RED);
