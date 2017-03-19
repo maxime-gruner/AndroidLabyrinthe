@@ -11,36 +11,13 @@
     tools:context="com.example.max.projetlabyrinthe.MainActivity">
 
     <LinearLayout
-        android:orientation="vertical"
+        android:id="@+id/linear"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/screenheigt">
+        android:layout_below="@+id/screenheigt"
+        android:orientation="vertical">
 
-        <Button
-            android:text="Level 1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"
-            android:id="@+id/level1"
-            style="@style/Widget.AppCompat.Button"
-            android:elevation="0dp" />
 
-        <Button
-            android:text="Level 2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/level2" />
-        <Button
-            android:text="Level 3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/level3" />
-        <Button
-            android:text="Level 4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/level4" />
     </LinearLayout>
 
     <TextView

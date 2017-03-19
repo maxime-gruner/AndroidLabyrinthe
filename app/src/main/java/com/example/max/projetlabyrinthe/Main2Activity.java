@@ -49,7 +49,7 @@ public class Main2Activity extends AppCompatActivity{
                         | View.SYSTEM_UI_FLAG_IMMERSIVE);
         setContentView(R.layout.activity_main2);
 
-        Intent intent=  getIntent();
+        final Intent intent=  getIntent();
         int levelNum = intent.getIntExtra("LEVEL",1);
         int screenWidth=intent.getIntExtra("WIDTH",0);
         int screenHeight=intent.getIntExtra("HEIGHT",0);
@@ -70,6 +70,7 @@ public class Main2Activity extends AppCompatActivity{
             @Override
             public void run() {
                 game.doRun(gameView,level);
+                setResult(1,intent);
                 finish();
 
             }
