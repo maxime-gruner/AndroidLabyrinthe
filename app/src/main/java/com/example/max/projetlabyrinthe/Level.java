@@ -22,7 +22,8 @@ public class Level {
     DoorBlock door;
     boolean hasInterrupteur = false;
 
-
+    private enum state {INIT, GAME};
+    private state myState = state.INIT;
 
     private boolean terminated = false;
     int height;
@@ -38,6 +39,7 @@ public class Level {
         this.width = w;
         this.wallList=bList;
         this.start= start;
+        myState = state.INIT;
 
     }
     public Level(int w,int h, Block start, List<Block> bList,DoorBlock door){
@@ -45,10 +47,12 @@ public class Level {
         hasInterrupteur = true;
         this.door = door;
 
+
     }
 
 
     public void changeAccel(float values[]){
+        if(myState == state.INIT) return;
         bille.changeVelocity(values, time);
 
     }
@@ -67,7 +71,9 @@ public class Level {
     }
 
     public boolean doRun(Main2Activity.GameView gameView) {
+
         bille = new Bille(BitmapFactory.decodeResource(gameView.getResources(),R.drawable.ball),start.getX(), start.getY());
+        myState = state.GAME;
             while(bille.isAlive()){
                 terminated = bille.update(time, wallList, width, height); //applique les mouvement
                 if(terminated) return true;
@@ -78,6 +84,7 @@ public class Level {
                     e.printStackTrace();
                 }
             }
+            myState = state.INIT;
 
         return false;
     }

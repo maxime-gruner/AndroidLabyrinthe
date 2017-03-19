@@ -33,6 +33,8 @@ public class Main2Activity extends AppCompatActivity{
     private Display mDisplay;
 
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,6 +71,7 @@ public class Main2Activity extends AppCompatActivity{
             public void run() {
                 game.doRun(gameView,level);
                 finish();
+
             }
         }).start();
 
@@ -85,6 +88,7 @@ public class Main2Activity extends AppCompatActivity{
         super.onPause();
         sm.unregisterListener(gameView);
     }
+
 
     class GameView extends View implements SensorEventListener {
 
